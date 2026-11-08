@@ -1,0 +1,190 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1560 2068" width="1560" height="2068" role="img" aria-labelledby="t d" font-family="Inter, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif">
+<title id="t">Withdrawal flow: USDC / USDT0 / EURC on Stellar to fiat</title><desc id="d">Sequence diagram of a withdrawal between the client, Stablecue, the Anchor Platform partner and the Stellar network, with the Stablecue intent state shown at each stage.</desc>
+<defs><marker id="ah-client" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="#14b8a6"/></marker><marker id="ah-sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="#6366f1"/></marker><marker id="ah-partner" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="#f59e0b"/></marker><marker id="ah-chain" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="#9ca3af"/></marker><marker id="ah-fail" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="#f87171"/></marker></defs>
+<rect width="1560" height="2068" rx="16" fill="#262626"/>
+<text x="40.0" y="48.0" font-size="24" font-weight="700" fill="#f2f2f2" text-anchor="start">Withdrawal flow: USDC / USDT0 / EURC on Stellar to fiat</text>
+<text x="40.0" y="74.0" font-size="14" font-weight="400" fill="#b5b5b5" text-anchor="start">Intent lifecycle  ·  SEP-10, SEP-12, SEP-24</text>
+<rect x="16.0" y="206.0" width="1528.0" height="235.0" rx="0" fill="#2b2b2b" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="34.0" y="230.0" font-size="11.5" font-weight="700" fill="#b5b5b5" text-anchor="start" letter-spacing="1">CREATE</text>
+<rect x="16.0" y="447.0" width="1528.0" height="364.0" rx="0" fill="#262626" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="34.0" y="471.0" font-size="11.5" font-weight="700" fill="#b5b5b5" text-anchor="start" letter-spacing="1">AUTHENTICATE</text>
+<text x="34.0" y="486.0" font-size="11.5" font-weight="700" fill="#b5b5b5" text-anchor="start" letter-spacing="1">(SEP-10)</text>
+<rect x="16.0" y="817.0" width="1528.0" height="159.0" rx="0" fill="#2b2b2b" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="34.0" y="841.0" font-size="11.5" font-weight="700" fill="#b5b5b5" text-anchor="start" letter-spacing="1">VERIFY</text>
+<text x="34.0" y="856.0" font-size="11.5" font-weight="700" fill="#b5b5b5" text-anchor="start" letter-spacing="1">(SEP-12)</text>
+<rect x="16.0" y="982.0" width="1528.0" height="491.0" rx="0" fill="#262626" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="34.0" y="1006.0" font-size="11.5" font-weight="700" fill="#b5b5b5" text-anchor="start" letter-spacing="1">EXECUTE</text>
+<text x="34.0" y="1021.0" font-size="11.5" font-weight="700" fill="#b5b5b5" text-anchor="start" letter-spacing="1">(SEP-24)</text>
+<rect x="16.0" y="1479.0" width="1528.0" height="287.0" rx="0" fill="#2b2b2b" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="34.0" y="1503.0" font-size="11.5" font-weight="700" fill="#b5b5b5" text-anchor="start" letter-spacing="1">SETTLE</text>
+<rect x="16.0" y="1772.0" width="1528.0" height="212.0" rx="0" fill="#262626" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="34.0" y="1796.0" font-size="11.5" font-weight="700" fill="#b5b5b5" text-anchor="start" letter-spacing="1">CONFIRM</text>
+<rect x="215.0" y="96.0" width="230.0" height="62.0" rx="12" fill="#14b8a6" stroke="#14b8a6" stroke-width="1.5" opacity="0.14"/>
+<rect x="215.0" y="96.0" width="230.0" height="62.0" rx="12" fill="none" stroke="#14b8a6" stroke-width="1.5" opacity="1"/>
+<text x="330.0" y="123.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="middle">Institutional client</text>
+<text x="330.0" y="144.0" font-size="12.5" font-weight="400" fill="#b5b5b5" text-anchor="middle">Own Stellar wallet</text>
+<line x1="330.0" y1="158.0" x2="330.0" y2="1998.0" stroke="#14b8a6" stroke-width="1.2" stroke-dasharray="3 6"/>
+<rect x="645.0" y="96.0" width="230.0" height="62.0" rx="12" fill="#6366f1" stroke="#6366f1" stroke-width="1.5" opacity="0.14"/>
+<rect x="645.0" y="96.0" width="230.0" height="62.0" rx="12" fill="none" stroke="#6366f1" stroke-width="1.5" opacity="1"/>
+<text x="760.0" y="123.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="middle">Stablecue</text>
+<text x="760.0" y="144.0" font-size="12.5" font-weight="400" fill="#b5b5b5" text-anchor="middle">API · engine · state machine</text>
+<line x1="760.0" y1="158.0" x2="760.0" y2="1998.0" stroke="#6366f1" stroke-width="1.2" stroke-dasharray="3 6"/>
+<rect x="1035.0" y="96.0" width="230.0" height="62.0" rx="12" fill="#f59e0b" stroke="#f59e0b" stroke-width="1.5" opacity="0.14"/>
+<rect x="1035.0" y="96.0" width="230.0" height="62.0" rx="12" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity="1"/>
+<text x="1150.0" y="123.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="middle">Anchor Platform partner</text>
+<text x="1150.0" y="144.0" font-size="12.5" font-weight="400" fill="#b5b5b5" text-anchor="middle">Regulated CASP · SEP servers</text>
+<line x1="1150.0" y1="158.0" x2="1150.0" y2="1998.0" stroke="#f59e0b" stroke-width="1.2" stroke-dasharray="3 6"/>
+<rect x="1305.0" y="96.0" width="230.0" height="62.0" rx="12" fill="#9ca3af" stroke="#9ca3af" stroke-width="1.5" opacity="0.14"/>
+<rect x="1305.0" y="96.0" width="230.0" height="62.0" rx="12" fill="none" stroke="#9ca3af" stroke-width="1.5" opacity="1"/>
+<text x="1420.0" y="123.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="middle">Stellar network</text>
+<text x="1420.0" y="144.0" font-size="12.5" font-weight="400" fill="#b5b5b5" text-anchor="middle">Ledger · Horizon / RPC</text>
+<line x1="1420.0" y1="158.0" x2="1420.0" y2="1998.0" stroke="#9ca3af" stroke-width="1.2" stroke-dasharray="3 6"/>
+<line x1="334.0" y1="266.0" x2="760.0" y2="266.0" stroke="#14b8a6" stroke-width="1.8" marker-end="url(#ah-client)"/>
+<rect x="332.8" y="224.0" width="424.5" height="40.0" rx="4" fill="#2b2b2b" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="553.0" y="239.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">POST /v1/intents</text>
+<text x="553.0" y="256.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="middle">direction=withdrawal · fiat_currency · stellar_asset · amount</text>
+<circle cx="350.8" cy="235.0" r="10" fill="#14b8a6"/>
+<text x="350.8" y="239.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">1</text>
+<rect x="611.0" y="284.0" width="297.9" height="64.0" rx="8" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
+<text x="760.0" y="306.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">Validate request and source address</text>
+<text x="760.0" y="324.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="middle">account exists, holds the asset (read-only)</text>
+<rect x="693.3" y="362.0" width="133.5" height="24.0" rx="12" fill="#6366f1" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="760.0" y="378.5" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">INTENT_CREATED</text>
+<line x1="756.0" y1="429.0" x2="330.0" y2="429.0" stroke="#6366f1" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#ah-sc)"/>
+<rect x="429.6" y="404.0" width="230.9" height="23.0" rx="4" fill="#2b2b2b" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="553.0" y="419.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">201 Created: intent_id, state</text>
+<circle cx="447.6" cy="415.0" r="10" fill="#6366f1"/>
+<text x="447.6" y="419.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">2</text>
+<line x1="764.0" y1="507.0" x2="1150.0" y2="507.0" stroke="#6366f1" stroke-width="1.8" marker-end="url(#ah-sc)"/>
+<rect x="846.6" y="465.0" width="216.8" height="40.0" rx="4" fill="#262626" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="963.0" y="480.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">GET /auth?account=G…</text>
+<text x="963.0" y="497.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="middle">SEP-10 challenge request</text>
+<circle cx="864.6" cy="476.0" r="10" fill="#6366f1"/>
+<text x="864.6" y="480.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">3</text>
+<line x1="1146.0" y1="554.0" x2="760.0" y2="554.0" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#ah-partner)"/>
+<rect x="858.1" y="529.0" width="193.8" height="23.0" rx="4" fill="#262626" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="963.0" y="544.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">Challenge transaction</text>
+<circle cx="876.1" cy="540.0" r="10" fill="#f59e0b"/>
+<text x="876.1" y="544.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">4</text>
+<line x1="756.0" y1="601.0" x2="330.0" y2="601.0" stroke="#6366f1" stroke-width="1.8" marker-end="url(#ah-sc)"/>
+<rect x="461.8" y="576.0" width="166.5" height="23.0" rx="4" fill="#262626" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="553.0" y="591.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">Challenge to sign</text>
+<circle cx="479.8" cy="587.0" r="10" fill="#6366f1"/>
+<text x="479.8" y="591.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">5</text>
+<line x1="334.0" y1="665.0" x2="760.0" y2="665.0" stroke="#14b8a6" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#ah-client)"/>
+<rect x="417.9" y="623.0" width="254.3" height="40.0" rx="4" fill="#262626" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="553.0" y="638.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">Signed challenge</text>
+<text x="553.0" y="655.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="middle">signed in the client’s own wallet</text>
+<circle cx="435.9" cy="634.0" r="10" fill="#14b8a6"/>
+<text x="435.9" y="638.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">6</text>
+<line x1="764.0" y1="712.0" x2="1150.0" y2="712.0" stroke="#6366f1" stroke-width="1.8" marker-end="url(#ah-sc)"/>
+<rect x="831.2" y="687.0" width="247.6" height="23.0" rx="4" fill="#262626" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="963.0" y="702.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">POST /auth (signed challenge)</text>
+<circle cx="849.2" cy="698.0" r="10" fill="#6366f1"/>
+<text x="849.2" y="702.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">7</text>
+<line x1="1146.0" y1="759.0" x2="760.0" y2="759.0" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#ah-partner)"/>
+<rect x="910.7" y="734.0" width="88.6" height="23.0" rx="4" fill="#262626" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="963.0" y="749.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">JWT</text>
+<circle cx="928.7" cy="745.0" r="10" fill="#f59e0b"/>
+<text x="928.7" y="749.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">8</text>
+<rect x="694.6" y="779.0" width="130.7" height="24.0" rx="12" fill="#6366f1" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="760.0" y="795.5" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">AUTHENTICATED</text>
+<line x1="764.0" y1="860.0" x2="1150.0" y2="860.0" stroke="#6366f1" stroke-width="1.8" marker-end="url(#ah-sc)"/>
+<rect x="836.1" y="835.0" width="237.8" height="23.0" rx="4" fill="#2b2b2b" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="963.0" y="850.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">GET /customer?account=G…</text>
+<circle cx="854.1" cy="846.0" r="10" fill="#6366f1"/>
+<text x="854.1" y="850.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">9</text>
+<line x1="1146.0" y1="924.0" x2="760.0" y2="924.0" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#ah-partner)"/>
+<rect x="788.4" y="882.0" width="333.2" height="40.0" rx="4" fill="#2b2b2b" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="963.0" y="897.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">status: ACCEPTED</text>
+<text x="963.0" y="914.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="middle">NEEDS_INFO: PUT /customer, then re-check</text>
+<circle cx="806.4" cy="893.0" r="10" fill="#f59e0b"/>
+<text x="806.4" y="897.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">10</text>
+<rect x="719.1" y="944.0" width="81.9" height="24.0" rx="12" fill="#6366f1" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="760.0" y="960.5" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">VERIFIED</text>
+<rect x="647.0" y="996.0" width="226.0" height="64.0" rx="8" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
+<text x="760.0" y="1018.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">Select Anchor Platform partner</text>
+<text x="760.0" y="1036.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="middle">jurisdiction · rail · volume</text>
+<line x1="764.0" y1="1118.0" x2="1150.0" y2="1118.0" stroke="#6366f1" stroke-width="1.8" marker-end="url(#ah-sc)"/>
+<rect x="800.6" y="1076.0" width="308.9" height="40.0" rx="4" fill="#262626" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="963.0" y="1091.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">POST /transactions/withdraw/interactive</text>
+<text x="963.0" y="1108.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="middle">asset_code · account · refund_memo</text>
+<circle cx="818.6" cy="1087.0" r="10" fill="#6366f1"/>
+<text x="818.6" y="1091.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">11</text>
+<line x1="1146.0" y1="1165.0" x2="760.0" y2="1165.0" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#ah-partner)"/>
+<rect x="833.3" y="1140.0" width="243.4" height="23.0" rx="4" fill="#262626" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="963.0" y="1155.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">Interactive url + transaction id</text>
+<circle cx="851.3" cy="1151.0" r="10" fill="#f59e0b"/>
+<text x="851.3" y="1155.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">12</text>
+<rect x="710.7" y="1185.0" width="98.6" height="24.0" rx="12" fill="#6366f1" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="760.0" y="1201.5" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">EXECUTING</text>
+<line x1="756.0" y1="1269.0" x2="330.0" y2="1269.0" stroke="#6366f1" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#ah-sc)"/>
+<rect x="409.7" y="1227.0" width="270.6" height="40.0" rx="4" fill="#262626" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="553.0" y="1242.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">Hosted-flow URL</text>
+<text x="553.0" y="1259.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="middle">with on_change_callback attached</text>
+<circle cx="427.7" cy="1238.0" r="10" fill="#6366f1"/>
+<text x="427.7" y="1242.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">13</text>
+<line x1="334.0" y1="1333.0" x2="1150.0" y2="1333.0" stroke="#14b8a6" stroke-width="1.8" marker-end="url(#ah-client)"/>
+<rect x="596.1" y="1291.0" width="287.9" height="40.0" rx="4" fill="#262626" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="748.0" y="1306.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">Completes hosted flow</text>
+<text x="748.0" y="1323.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="middle">KYC details, bank account for payout</text>
+<circle cx="614.1" cy="1302.0" r="10" fill="#14b8a6"/>
+<text x="614.1" y="1306.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">14</text>
+<line x1="1146.0" y1="1397.0" x2="760.0" y2="1397.0" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#ah-partner)"/>
+<rect x="782.8" y="1355.0" width="344.3" height="40.0" rx="4" fill="#262626" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="963.0" y="1370.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">Callback: pending_user_transfer_start</text>
+<text x="963.0" y="1387.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="middle">withdraw_anchor_account · memo · amount_in</text>
+<circle cx="800.8" cy="1366.0" r="10" fill="#f59e0b"/>
+<text x="800.8" y="1370.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">15</text>
+<line x1="756.0" y1="1461.0" x2="330.0" y2="1461.0" stroke="#6366f1" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#ah-sc)"/>
+<rect x="413.8" y="1419.0" width="262.4" height="40.0" rx="4" fill="#262626" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="553.0" y="1434.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">Payment instructions</text>
+<text x="553.0" y="1451.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="middle">anchor account · memo · amount</text>
+<circle cx="431.8" cy="1430.0" r="10" fill="#6366f1"/>
+<text x="431.8" y="1434.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">16</text>
+<line x1="334.0" y1="1539.0" x2="1420.0" y2="1539.0" stroke="#14b8a6" stroke-width="1.8" marker-end="url(#ah-client)"/>
+<rect x="725.3" y="1497.0" width="299.5" height="40.0" rx="4" fill="#2b2b2b" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="883.0" y="1512.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">Payment: stablecoin to anchor account</text>
+<text x="883.0" y="1529.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="middle">signed in the client’s own wallet</text>
+<circle cx="743.3" cy="1508.0" r="10" fill="#14b8a6"/>
+<text x="743.3" y="1512.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">17</text>
+<line x1="1416.0" y1="1603.0" x2="1150.0" y2="1603.0" stroke="#9ca3af" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#ah-chain)"/>
+<rect x="1167.8" y="1561.0" width="234.5" height="40.0" rx="4" fill="#2b2b2b" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="1293.0" y="1576.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">Payment observed</text>
+<text x="1293.0" y="1593.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="middle">anchor watches the account</text>
+<circle cx="1185.8" cy="1572.0" r="10" fill="#9ca3af"/>
+<text x="1185.8" y="1576.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">18</text>
+<line x1="1146.0" y1="1650.0" x2="330.0" y2="1650.0" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#ah-partner)"/>
+<rect x="628.5" y="1625.0" width="222.9" height="23.0" rx="4" fill="#2b2b2b" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="748.0" y="1640.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">Fiat payout (bank transfer)</text>
+<circle cx="646.5" cy="1636.0" r="10" fill="#f59e0b"/>
+<text x="646.5" y="1640.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">19</text>
+<line x1="1146.0" y1="1714.0" x2="760.0" y2="1714.0" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#ah-partner)"/>
+<rect x="839.3" y="1672.0" width="231.3" height="40.0" rx="4" fill="#2b2b2b" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="963.0" y="1687.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">Callback: status=completed</text>
+<text x="963.0" y="1704.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="middle">stellar_transaction_id</text>
+<circle cx="857.3" cy="1683.0" r="10" fill="#f59e0b"/>
+<text x="857.3" y="1687.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">20</text>
+<rect x="680.3" y="1734.0" width="159.4" height="24.0" rx="12" fill="#6366f1" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="760.0" y="1750.5" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">ON_CHAIN_RELEASED</text>
+<line x1="764.0" y1="1815.0" x2="1420.0" y2="1815.0" stroke="#6366f1" stroke-width="1.8" marker-end="url(#ah-sc)"/>
+<rect x="970.1" y="1790.0" width="239.8" height="23.0" rx="4" fill="#262626" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="1098.0" y="1805.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">Fetch client payment by hash</text>
+<circle cx="988.1" cy="1801.0" r="10" fill="#6366f1"/>
+<text x="988.1" y="1805.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">21</text>
+<line x1="1416.0" y1="1879.0" x2="760.0" y2="1879.0" stroke="#9ca3af" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#ah-chain)"/>
+<rect x="967.9" y="1837.0" width="244.2" height="40.0" rx="4" fill="#262626" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="1098.0" y="1852.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">Successful, in a closed ledger</text>
+<text x="1098.0" y="1869.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="middle">read-only check</text>
+<circle cx="985.9" cy="1848.0" r="10" fill="#9ca3af"/>
+<text x="985.9" y="1852.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">22</text>
+<rect x="708.4" y="1899.0" width="103.1" height="24.0" rx="12" fill="#6366f1" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="760.0" y="1915.5" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">COMPLETED</text>
+<line x1="756.0" y1="1966.0" x2="330.0" y2="1966.0" stroke="#6366f1" stroke-width="1.8" stroke-dasharray="7 5" marker-end="url(#ah-sc)"/>
+<rect x="408.9" y="1941.0" width="272.1" height="23.0" rx="4" fill="#262626" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="553.0" y="1956.0" font-size="13" font-weight="700" fill="#f2f2f2" text-anchor="middle">Intent COMPLETED + confirmation</text>
+<circle cx="426.9" cy="1952.0" r="10" fill="#6366f1"/>
+<text x="426.9" y="1956.0" font-size="11.5" font-weight="700" fill="#111" text-anchor="middle">23</text>
+<text x="40.0" y="2028.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Every state transition is appended to the immutable event log: intent_id → partner transaction id → Stellar tx hash.</text>
+<text x="40.0" y="2050.0" font-size="12.5" font-weight="400" fill="#b5b5b5" text-anchor="start">Solid arrows: requests and actions.  Dashed arrows: responses and callbacks.  Arrow colour = sender (teal client, indigo Stablecue, amber partner, grey Stellar).</text>
+</svg>
