@@ -1,102 +1,127 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1640 1170" width="1640" height="1170" role="img" aria-labelledby="t d" font-family="Inter, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif">
-<title id="t">Stablecue architecture overview</title><desc id="d">Layered diagram: institutional clients call the Stablecue orchestration engine over HTTPS and OAuth2. The engine calls regulated Anchor Platform partners using SEP-10, SEP-12 and SEP-24. Partners settle stablecoins on the Stellar network. Stablecue only reads the ledger.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1720 1310" width="1720" height="1310" role="img" aria-labelledby="t d" font-family="Inter, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif">
+<title id="t">Stablecue architecture overview</title><desc id="d">Layered diagram: clients and their Stellar wallets reach Stablecue over SEP endpoints or a REST API. Stablecue runs the Stellar Anchor Platform and an orchestration engine, which calls regulated CASP partners through their own REST APIs. The CASPs send and receive stablecoins on the Stellar network from their own wallets. Stablecue only reads the ledger.</desc>
 <defs><marker id="ah-client" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="#14b8a6"/></marker><marker id="ah-sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="#6366f1"/></marker><marker id="ah-partner" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="#f59e0b"/></marker><marker id="ah-chain" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="#9ca3af"/></marker><marker id="ah-fail" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="#f87171"/></marker></defs>
-<rect width="1640" height="1170" rx="16" fill="#262626"/>
+<rect width="1720" height="1310" rx="16" fill="#262626"/>
 <text x="40.0" y="48.0" font-size="24" font-weight="700" fill="#f2f2f2" text-anchor="start">Stablecue architecture</text>
 <text x="40.0" y="74.0" font-size="14" font-weight="400" fill="#b5b5b5" text-anchor="start">Anchor Platform integration  ·  Tranches 1–3  ·  Stellar</text>
-<rect x="40.0" y="100.0" width="1520.0" height="100.0" rx="16" fill="#14b8a6" stroke="#14b8a6" stroke-width="1.5" opacity="0.07"/>
-<rect x="40.0" y="100.0" width="1520.0" height="100.0" rx="16" fill="none" stroke="#14b8a6" stroke-width="1.5" opacity="0.8"/>
-<text x="62.0" y="130.0" font-size="12.5" font-weight="700" fill="#5eead4" text-anchor="start" letter-spacing="1.5">INSTITUTIONAL B2B CLIENTS</text>
+<rect x="100.0" y="100.0" width="1520.0" height="100.0" rx="16" fill="#14b8a6" stroke="#14b8a6" stroke-width="1.5" opacity="0.07"/>
+<rect x="100.0" y="100.0" width="1520.0" height="100.0" rx="16" fill="none" stroke="#14b8a6" stroke-width="1.5" opacity="0.8"/>
+<text x="122.0" y="130.0" font-size="12.5" font-weight="700" fill="#5eead4" text-anchor="start" letter-spacing="1.5">INSTITUTIONAL B2B CLIENTS AND THEIR STELLAR WALLETS</text>
 <rect x="275.0" y="138.0" width="330.0" height="48.0" rx="10" fill="#303030" stroke="#14b8a6" stroke-width="1.2" opacity="1"/>
 <text x="291.0" y="166.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Client A: treasury / application</text>
 <rect x="645.0" y="138.0" width="330.0" height="48.0" rx="10" fill="#303030" stroke="#14b8a6" stroke-width="1.2" opacity="1"/>
 <text x="661.0" y="166.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Client B: asset manager</text>
 <rect x="1015.0" y="138.0" width="330.0" height="48.0" rx="10" fill="#303030" stroke="#14b8a6" stroke-width="1.2" opacity="1"/>
 <text x="1031.0" y="166.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Client C: OTC desk</text>
-<line x1="640.0" y1="200.0" x2="640.0" y2="260.0" stroke="#14b8a6" stroke-width="1.8" marker-end="url(#ah-client)"/>
-<text x="654.0" y="235.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">API requests: HTTPS + OAuth2</text>
-<line x1="1000.0" y1="260.0" x2="1000.0" y2="200.0" stroke="#6366f1" stroke-width="1.8" marker-end="url(#ah-sc)"/>
-<text x="1014.0" y="235.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Intent status and webhooks</text>
-<rect x="40.0" y="260.0" width="1520.0" height="405.0" rx="16" fill="#6366f1" stroke="#6366f1" stroke-width="1.5" opacity="0.07"/>
-<rect x="40.0" y="260.0" width="1520.0" height="405.0" rx="16" fill="none" stroke="#6366f1" stroke-width="1.5" opacity="0.8"/>
-<text x="62.0" y="290.0" font-size="12.5" font-weight="700" fill="#a5a8f8" text-anchor="start" letter-spacing="1.5">STABLECUE ORCHESTRATION ENGINE</text>
-<text x="62.0" y="312.0" font-size="13.5" font-weight="400" fill="#b5b5b5" text-anchor="start">A pure technology layer: it orchestrates regulated partners and never touches funds.</text>
-<rect x="60.0" y="330.0" width="352.0" height="100.0" rx="10" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
-<text x="76.0" y="358.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">API Gateway</text>
-<text x="76.0" y="382.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">OAuth2 authentication, per-client rate limits and a</text>
-<text x="76.0" y="400.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">key-value store for keys and limits.</text>
-<rect x="436.0" y="330.0" width="352.0" height="100.0" rx="10" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
-<text x="452.0" y="358.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Routing Engine</text>
-<text x="452.0" y="382.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Selects the Anchor Platform partner by jurisdiction,</text>
-<text x="452.0" y="400.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">rail availability and volume.</text>
-<rect x="812.0" y="330.0" width="352.0" height="100.0" rx="10" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
-<text x="828.0" y="358.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Intent State Machine</text>
-<text x="828.0" y="382.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Persists every transition from created to completed,</text>
-<text x="828.0" y="400.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">failed, refunded or expired.</text>
-<rect x="1188.0" y="330.0" width="352.0" height="100.0" rx="10" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
-<text x="1204.0" y="358.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Event Log</text>
-<text x="1204.0" y="382.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Append-only audit trail linking intent ID, partner</text>
-<text x="1204.0" y="400.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">transaction ID and Stellar tx hash.</text>
-<rect x="60.0" y="450.0" width="352.0" height="100.0" rx="10" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
-<text x="76.0" y="478.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Stellar Address Validator</text>
-<text x="76.0" y="502.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">StrKey and memo checks; account exists and</text>
-<text x="76.0" y="520.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">trustline present before any execution.</text>
-<rect x="436.0" y="450.0" width="352.0" height="100.0" rx="10" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
-<text x="452.0" y="478.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Anchor Platform Client</text>
-<text x="452.0" y="502.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">SEP-10, SEP-12 and SEP-24 adapters. SEP-31</text>
-<text x="452.0" y="520.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">interface designed.</text>
-<rect x="812.0" y="450.0" width="352.0" height="100.0" rx="10" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
-<text x="828.0" y="478.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Reconciliation</text>
-<text x="828.0" y="502.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Signed partner callbacks as primary sync,</text>
-<text x="828.0" y="520.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">heartbeat poller as fallback.</text>
-<rect x="1188.0" y="450.0" width="352.0" height="100.0" rx="10" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
-<text x="1204.0" y="478.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Expiry and Compensation</text>
-<text x="1204.0" y="502.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Intent TTL, retry with backoff, refund tracking from</text>
-<text x="1204.0" y="520.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">partner status.</text>
-<rect x="60.0" y="576.0" width="1480.0" height="54.0" rx="10" fill="#6366f1" stroke="none" stroke-width="1.5" opacity="0.16"/>
-<text x="800.0" y="608.0" font-size="14" font-weight="700" fill="#f2f2f2" text-anchor="middle">Non-custodial boundary: Stablecue holds no private keys, no client funds and no KYC/KYB data (verification status references only).</text>
-<line x1="640.0" y1="665.0" x2="640.0" y2="725.0" stroke="#6366f1" stroke-width="1.8" marker-end="url(#ah-sc)"/>
-<text x="654.0" y="700.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">SEP-10 · SEP-12 · SEP-24 over HTTPS</text>
-<line x1="1000.0" y1="725.0" x2="1000.0" y2="665.0" stroke="#f59e0b" stroke-width="1.8" marker-end="url(#ah-partner)"/>
-<text x="1014.0" y="700.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Signed status callbacks</text>
-<rect x="40.0" y="725.0" width="1520.0" height="160.0" rx="16" fill="#f59e0b" stroke="#f59e0b" stroke-width="1.5" opacity="0.07"/>
-<rect x="40.0" y="725.0" width="1520.0" height="160.0" rx="16" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity="0.8"/>
-<text x="62.0" y="755.0" font-size="12.5" font-weight="700" fill="#fcd34d" text-anchor="start" letter-spacing="1.5">ANCHOR PLATFORM PARTNERS (REGULATED CASPs)</text>
-<rect x="60.0" y="775.0" width="500.0" height="90.0" rx="10" fill="#303030" stroke="#f59e0b" stroke-width="1.2" opacity="1"/>
-<text x="76.0" y="803.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Partner 1: regulated CASP</text>
-<text x="76.0" y="827.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Runs the Anchor Platform SEP servers. Accepts and pays out fiat, converts,</text>
-<text x="76.0" y="845.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">delivers on-chain.</text>
-<rect x="584.0" y="775.0" width="500.0" height="90.0" rx="10" fill="#303030" stroke="#f59e0b" stroke-width="1.2" opacity="1"/>
-<text x="600.0" y="803.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Partner 2: regulated CASP</text>
-<text x="600.0" y="827.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Same interface under an independent licence and compliance framework.</text>
-<rect x="1108.0" y="775.0" width="432.0" height="90.0" rx="10" fill="#303030" stroke="#9ca3af" stroke-width="1.2" opacity="1"/>
-<text x="1124.0" y="803.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Fiat rails</text>
-<text x="1124.0" y="827.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">SEPA and bank transfers between client banks and partners.</text>
-<line x1="800.0" y1="885.0" x2="800.0" y2="945.0" stroke="#f59e0b" stroke-width="1.8" marker-end="url(#ah-partner)"/>
-<text x="814.0" y="920.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">On-chain settlement: anchor-signed payments</text>
-<rect x="40.0" y="945.0" width="1520.0" height="140.0" rx="16" fill="#9ca3af" stroke="#9ca3af" stroke-width="1.5" opacity="0.07"/>
-<rect x="40.0" y="945.0" width="1520.0" height="140.0" rx="16" fill="none" stroke="#9ca3af" stroke-width="1.5" opacity="0.8"/>
-<text x="62.0" y="975.0" font-size="12.5" font-weight="700" fill="#d1d5db" text-anchor="start" letter-spacing="1.5">STELLAR NETWORK</text>
-<rect x="60.0" y="990.0" width="352.0" height="70.0" rx="10" fill="#303030" stroke="#9ca3af" stroke-width="1.2" opacity="1"/>
-<text x="76.0" y="1018.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">USDC</text>
-<text x="76.0" y="1042.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Day one</text>
-<rect x="436.0" y="990.0" width="352.0" height="70.0" rx="10" fill="#303030" stroke="#9ca3af" stroke-width="1.2" opacity="1"/>
-<text x="452.0" y="1018.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">USDT0</text>
-<text x="452.0" y="1042.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Day one</text>
-<rect x="812.0" y="990.0" width="352.0" height="70.0" rx="10" fill="#303030" stroke="#9ca3af" stroke-width="1.2" opacity="1"/>
-<text x="828.0" y="1018.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">EURC</text>
-<text x="828.0" y="1042.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Follow-on</text>
-<rect x="1188.0" y="990.0" width="352.0" height="70.0" rx="10" fill="#303030" stroke="#9ca3af" stroke-width="1.2" opacity="1"/>
-<text x="1204.0" y="1018.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Client-bound addresses</text>
-<text x="1204.0" y="1042.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Pre-bound G… / M… destination accounts</text>
-<path d="M1560,600 L1600,600 L1600,1030 L1562,1030" fill="none" stroke="#6366f1" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#ah-sc)" stroke-linejoin="round"/>
-<text x="1623.0" y="815.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="middle" transform="rotate(-90 1623.0 815.0)">Read-only verification (Horizon / Stellar RPC)</text>
-<rect x="60.0" y="1121.0" width="14.0" height="14.0" rx="3" fill="#14b8a6" stroke="none" stroke-width="1.5" opacity="1"/>
-<text x="82.0" y="1133.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Client side</text>
-<rect x="182.5" y="1121.0" width="14.0" height="14.0" rx="3" fill="#6366f1" stroke="none" stroke-width="1.5" opacity="1"/>
-<text x="204.5" y="1133.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Stablecue</text>
-<rect x="301.8" y="1121.0" width="14.0" height="14.0" rx="3" fill="#f59e0b" stroke="none" stroke-width="1.5" opacity="1"/>
-<text x="323.8" y="1133.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Regulated partner (custody and licences)</text>
-<rect x="613.3" y="1121.0" width="14.0" height="14.0" rx="3" fill="#9ca3af" stroke="none" stroke-width="1.5" opacity="1"/>
-<text x="635.3" y="1133.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Stellar / fiat rails</text>
+<line x1="700.0" y1="200.0" x2="700.0" y2="260.0" stroke="#14b8a6" stroke-width="1.8" marker-end="url(#ah-client)"/>
+<text x="714.0" y="235.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">SEP-10 · SEP-12 · SEP-24, or REST API (HTTPS)</text>
+<line x1="1060.0" y1="260.0" x2="1060.0" y2="200.0" stroke="#6366f1" stroke-width="1.8" marker-end="url(#ah-sc)"/>
+<text x="1074.0" y="235.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Callbacks, webhooks and intent status</text>
+<rect x="100.0" y="260.0" width="1520.0" height="550.0" rx="16" fill="#6366f1" stroke="#6366f1" stroke-width="1.5" opacity="0.07"/>
+<rect x="100.0" y="260.0" width="1520.0" height="550.0" rx="16" fill="none" stroke="#6366f1" stroke-width="1.5" opacity="0.8"/>
+<text x="122.0" y="290.0" font-size="12.5" font-weight="700" fill="#a5a8f8" text-anchor="start" letter-spacing="1.5">STABLECUE</text>
+<text x="122.0" y="312.0" font-size="13.5" font-weight="400" fill="#b5b5b5" text-anchor="start">The Stellar-facing anchor and the orchestration engine behind it. Partners execute; Stablecue never touches funds.</text>
+<rect x="112.0" y="326.0" width="1496.0" height="140.0" rx="12" fill="#6366f1" stroke="none" stroke-width="1.5" opacity="0.08"/>
+<rect x="112.0" y="326.0" width="1496.0" height="140.0" rx="12" fill="none" stroke="#6366f1" stroke-width="1" opacity="0.6" stroke-dasharray="5 5"/>
+<text x="130.0" y="348.0" font-size="11.5" font-weight="700" fill="#a5a8f8" text-anchor="start" letter-spacing="1.4">ANCHOR PLATFORM (STELLAR-FACING)</text>
+<rect x="120.0" y="356.0" width="352.0" height="100.0" rx="10" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
+<text x="136.0" y="384.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">SEP Server</text>
+<text x="136.0" y="408.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">SEP-1, SEP-10, SEP-12 and SEP-24 endpoints for</text>
+<text x="136.0" y="426.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">wallets and clients. SEP-31 designed.</text>
+<rect x="496.0" y="356.0" width="352.0" height="100.0" rx="10" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
+<text x="512.0" y="384.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Hosted Interactive Flow</text>
+<text x="512.0" y="408.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Stablecue-built SEP-24 pages: amounts, KYC</text>
+<text x="512.0" y="426.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">hand-off and payment instructions.</text>
+<rect x="872.0" y="356.0" width="352.0" height="100.0" rx="10" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
+<text x="888.0" y="384.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Platform API and Events</text>
+<text x="888.0" y="408.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">The engine updates transaction status here and the</text>
+<text x="888.0" y="426.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">platform notifies wallets.</text>
+<rect x="1248.0" y="356.0" width="352.0" height="100.0" rx="10" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
+<text x="1264.0" y="384.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">SEP Signing Key</text>
+<text x="1264.0" y="408.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Signs SEP-10 challenges and callbacks only. Holds</text>
+<text x="1264.0" y="426.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">no funds and no client keys.</text>
+<rect x="112.0" y="478.0" width="1496.0" height="254.0" rx="12" fill="#6366f1" stroke="none" stroke-width="1.5" opacity="0.08"/>
+<rect x="112.0" y="478.0" width="1496.0" height="254.0" rx="12" fill="none" stroke="#6366f1" stroke-width="1" opacity="0.6" stroke-dasharray="5 5"/>
+<text x="130.0" y="500.0" font-size="11.5" font-weight="700" fill="#a5a8f8" text-anchor="start" letter-spacing="1.4">ORCHESTRATION ENGINE (BUSINESS SERVER)</text>
+<rect x="120.0" y="508.0" width="352.0" height="100.0" rx="10" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
+<text x="136.0" y="536.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">API Gateway</text>
+<text x="136.0" y="560.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">REST API for institutional clients: OAuth2, per-client</text>
+<text x="136.0" y="578.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">rate limits, key-value store.</text>
+<rect x="496.0" y="508.0" width="352.0" height="100.0" rx="10" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
+<text x="512.0" y="536.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Routing Engine</text>
+<text x="512.0" y="560.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Selects the CASP by jurisdiction, volume, rail</text>
+<text x="512.0" y="578.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">availability and Stellar asset support.</text>
+<rect x="872.0" y="508.0" width="352.0" height="100.0" rx="10" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
+<text x="888.0" y="536.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Intent State Machine</text>
+<text x="888.0" y="560.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Persists every transition from created to completed,</text>
+<text x="888.0" y="578.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">failed, refunded or expired.</text>
+<rect x="1248.0" y="508.0" width="352.0" height="100.0" rx="10" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
+<text x="1264.0" y="536.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Event Log</text>
+<text x="1264.0" y="560.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Append-only audit trail: intent ID, SEP-24</text>
+<text x="1264.0" y="578.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">transaction ID, CASP order ID, Stellar tx hash.</text>
+<rect x="120.0" y="620.0" width="352.0" height="100.0" rx="10" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
+<text x="136.0" y="648.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Stellar Address Validator</text>
+<text x="136.0" y="672.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">StrKey and memo checks; account exists and</text>
+<text x="136.0" y="690.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">trustline present before any execution.</text>
+<rect x="496.0" y="620.0" width="352.0" height="100.0" rx="10" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
+<text x="512.0" y="648.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">CASP Adapters</text>
+<text x="512.0" y="672.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">One adapter per CASP maps its REST API and</text>
+<text x="512.0" y="690.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">webhooks to Stablecue intents.</text>
+<rect x="872.0" y="620.0" width="352.0" height="100.0" rx="10" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
+<text x="888.0" y="648.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Reconciliation</text>
+<text x="888.0" y="672.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Signed CASP webhooks as primary sync, heartbeat</text>
+<text x="888.0" y="690.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">poller as fallback.</text>
+<rect x="1248.0" y="620.0" width="352.0" height="100.0" rx="10" fill="#303030" stroke="#6366f1" stroke-width="1.2" opacity="1"/>
+<text x="1264.0" y="648.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Expiry and Compensation</text>
+<text x="1264.0" y="672.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Intent TTL, retry with backoff, refund tracking from</text>
+<text x="1264.0" y="690.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">CASP status.</text>
+<rect x="120.0" y="748.0" width="1480.0" height="50.0" rx="10" fill="#6366f1" stroke="none" stroke-width="1.5" opacity="0.16"/>
+<text x="860.0" y="779.0" font-size="14" font-weight="700" fill="#f2f2f2" text-anchor="middle">Non-custodial: no client keys, no client funds. KYC data is processed in transit and stored only by the CASP.</text>
+<line x1="700.0" y1="810.0" x2="700.0" y2="870.0" stroke="#6366f1" stroke-width="1.8" marker-end="url(#ah-sc)"/>
+<text x="714.0" y="845.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">CASP REST API calls</text>
+<line x1="1060.0" y1="870.0" x2="1060.0" y2="810.0" stroke="#f59e0b" stroke-width="1.8" marker-end="url(#ah-partner)"/>
+<text x="1074.0" y="845.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Signed CASP webhooks</text>
+<rect x="100.0" y="870.0" width="1520.0" height="170.0" rx="16" fill="#f59e0b" stroke="#f59e0b" stroke-width="1.5" opacity="0.07"/>
+<rect x="100.0" y="870.0" width="1520.0" height="170.0" rx="16" fill="none" stroke="#f59e0b" stroke-width="1.5" opacity="0.8"/>
+<text x="122.0" y="900.0" font-size="12.5" font-weight="700" fill="#fcd34d" text-anchor="start" letter-spacing="1.5">REGULATED PARTNERS (CASPs)</text>
+<rect x="120.0" y="920.0" width="500.0" height="100.0" rx="10" fill="#303030" stroke="#f59e0b" stroke-width="1.2" opacity="1"/>
+<text x="136.0" y="948.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">CASP: regulated partner (integrated)</text>
+<text x="136.0" y="972.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Own REST API, no Anchor Platform needed. Handles fiat, conversion and</text>
+<text x="136.0" y="990.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Stellar delivery or receipt from its own wallets.</text>
+<rect x="644.0" y="920.0" width="500.0" height="100.0" rx="10" fill="#303030" stroke="#f59e0b" stroke-width="1.2" opacity="1" stroke-dasharray="6 5"/>
+<text x="660.0" y="948.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Further CASPs</text>
+<text x="660.0" y="972.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Not integrated in this grant. The routing logic and adapter interface support</text>
+<text x="660.0" y="990.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">them; adding one means writing an adapter.</text>
+<rect x="1168.0" y="920.0" width="432.0" height="100.0" rx="10" fill="#303030" stroke="#9ca3af" stroke-width="1.2" opacity="1"/>
+<text x="1184.0" y="948.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Fiat rails</text>
+<text x="1184.0" y="972.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">SEPA and bank transfers between client banks and CASPs.</text>
+<line x1="860.0" y1="1040.0" x2="860.0" y2="1100.0" stroke="#f59e0b" stroke-width="1.8" marker-end="url(#ah-partner)"/>
+<text x="874.0" y="1075.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">On-chain delivery and receipt from CASP wallets</text>
+<rect x="100.0" y="1100.0" width="1520.0" height="140.0" rx="16" fill="#9ca3af" stroke="#9ca3af" stroke-width="1.5" opacity="0.07"/>
+<rect x="100.0" y="1100.0" width="1520.0" height="140.0" rx="16" fill="none" stroke="#9ca3af" stroke-width="1.5" opacity="0.8"/>
+<text x="122.0" y="1130.0" font-size="12.5" font-weight="700" fill="#d1d5db" text-anchor="start" letter-spacing="1.5">STELLAR NETWORK</text>
+<rect x="120.0" y="1145.0" width="352.0" height="70.0" rx="10" fill="#303030" stroke="#9ca3af" stroke-width="1.2" opacity="1"/>
+<text x="136.0" y="1173.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">USDC</text>
+<text x="136.0" y="1197.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Day one</text>
+<rect x="496.0" y="1145.0" width="352.0" height="70.0" rx="10" fill="#303030" stroke="#9ca3af" stroke-width="1.2" opacity="1"/>
+<text x="512.0" y="1173.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">USDT0</text>
+<text x="512.0" y="1197.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Day one</text>
+<rect x="872.0" y="1145.0" width="352.0" height="70.0" rx="10" fill="#303030" stroke="#9ca3af" stroke-width="1.2" opacity="1"/>
+<text x="888.0" y="1173.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">EURC</text>
+<text x="888.0" y="1197.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Follow-on</text>
+<rect x="1248.0" y="1145.0" width="352.0" height="70.0" rx="10" fill="#303030" stroke="#9ca3af" stroke-width="1.2" opacity="1"/>
+<text x="1264.0" y="1173.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Client-bound addresses</text>
+<text x="1264.0" y="1197.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Pre-bound G… / M… destination accounts</text>
+<path d="M1620,770 L1660,770 L1660,1180 L1622,1180" fill="none" stroke="#6366f1" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#ah-sc)" stroke-linejoin="round"/>
+<text x="1685.0" y="975.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="middle" transform="rotate(-90 1685.0 975.0)">Read-only verification (Horizon / Stellar RPC)</text>
+<path d="M100,150 L62,150 L62,1180 L98,1180" fill="none" stroke="#14b8a6" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#ah-client)" stroke-linejoin="round"/>
+<text x="38.0" y="665.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="middle" transform="rotate(-90 38.0 665.0)">Client wallets send and receive on-chain (client-held keys)</text>
+<rect x="100.0" y="1271.0" width="14.0" height="14.0" rx="3" fill="#14b8a6" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="122.0" y="1283.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Client side</text>
+<rect x="222.5" y="1271.0" width="14.0" height="14.0" rx="3" fill="#6366f1" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="244.5" y="1283.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Stablecue</text>
+<rect x="341.8" y="1271.0" width="14.0" height="14.0" rx="3" fill="#f59e0b" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="363.8" y="1283.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Regulated partner (CASP)</text>
+<rect x="557.9" y="1271.0" width="14.0" height="14.0" rx="3" fill="#9ca3af" stroke="none" stroke-width="1.5" opacity="1"/>
+<text x="579.9" y="1283.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Stellar / fiat rails</text>
 </svg>
