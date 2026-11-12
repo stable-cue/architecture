@@ -3,7 +3,7 @@
 <defs><marker id="ah-client" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="#14b8a6"/></marker><marker id="ah-sc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="#6366f1"/></marker><marker id="ah-partner" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="#f59e0b"/></marker><marker id="ah-chain" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="#9ca3af"/></marker><marker id="ah-fail" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto"><path d="M0,1 L10,5 L0,9 z" fill="#f87171"/></marker></defs>
 <rect width="1720" height="1310" rx="16" fill="#262626"/>
 <text x="40.0" y="48.0" font-size="24" font-weight="700" fill="#f2f2f2" text-anchor="start">Stablecue architecture</text>
-<text x="40.0" y="74.0" font-size="14" font-weight="400" fill="#b5b5b5" text-anchor="start">Anchor Platform integration  ·  Tranches 1–3  ·  Stellar</text>
+<text x="40.0" y="74.0" font-size="14" font-weight="400" fill="#b5b5b5" text-anchor="start">Anchor Platform integration  ·  Stellar</text>
 <rect x="100.0" y="100.0" width="1520.0" height="100.0" rx="16" fill="#14b8a6" stroke="#14b8a6" stroke-width="1.5" opacity="0.07"/>
 <rect x="100.0" y="100.0" width="1520.0" height="100.0" rx="16" fill="none" stroke="#14b8a6" stroke-width="1.5" opacity="0.8"/>
 <text x="122.0" y="130.0" font-size="12.5" font-weight="700" fill="#5eead4" text-anchor="start" letter-spacing="1.5">INSTITUTIONAL B2B CLIENTS AND THEIR STELLAR WALLETS</text>
@@ -89,9 +89,9 @@
 <text x="136.0" y="972.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Own REST API, no Anchor Platform needed. Handles fiat, conversion and</text>
 <text x="136.0" y="990.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Stellar delivery or receipt from its own wallets.</text>
 <rect x="644.0" y="920.0" width="500.0" height="100.0" rx="10" fill="#303030" stroke="#f59e0b" stroke-width="1.2" opacity="1" stroke-dasharray="6 5"/>
-<text x="660.0" y="948.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Further CASPs</text>
-<text x="660.0" y="972.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Not integrated in this grant. The routing logic and adapter interface support</text>
-<text x="660.0" y="990.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">them; adding one means writing an adapter.</text>
+<text x="660.0" y="948.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Additional CASPs</text>
+<text x="660.0" y="972.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Plug in through the same adapter interface; adding one means writing an</text>
+<text x="660.0" y="990.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">adapter.</text>
 <rect x="1168.0" y="920.0" width="432.0" height="100.0" rx="10" fill="#303030" stroke="#9ca3af" stroke-width="1.2" opacity="1"/>
 <text x="1184.0" y="948.0" font-size="15.5" font-weight="700" fill="#f2f2f2" text-anchor="start">Fiat rails</text>
 <text x="1184.0" y="972.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">SEPA and bank transfers between client banks and CASPs.</text>
@@ -124,4 +124,6 @@
 <text x="363.8" y="1283.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Regulated partner (CASP)</text>
 <rect x="557.9" y="1271.0" width="14.0" height="14.0" rx="3" fill="#9ca3af" stroke="none" stroke-width="1.5" opacity="1"/>
 <text x="579.9" y="1283.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Stellar / fiat rails</text>
+<rect x="715.0" y="1271.0" width="14.0" height="14.0" rx="3" fill="none" stroke="#b5b5b5" stroke-width="1.2" opacity="1" stroke-dasharray="3 3"/>
+<text x="737.0" y="1283.0" font-size="13" font-weight="400" fill="#b5b5b5" text-anchor="start">Dashed: additional CASPs</text>
 </svg>

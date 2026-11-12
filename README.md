@@ -1,12 +1,12 @@
 # Stablecue Technical Architecture
 
-**Stellar Anchor Platform integration track · Tranches 1–3 · Stellar-specific build plan**
+**Stellar Anchor Platform integration · Technical architecture**
 
 ---
 
 ## 1. Purpose and Scope
 
-This document defines the technical architecture for Stablecue's Stellar integration. It covers what will be built across Tranches 1 to 3 only. Business model, marketing and other non-technical deliverables are addressed elsewhere in the submission.
+This document defines the technical architecture for Stablecue's Stellar integration.
 
 Stablecue is the layer between institutional clients and regulated partners (CASPs). It runs the Stellar Anchor Platform, so clients and wallets reach regulated fiat rails through standard SEPs, and it integrates each CASP's own API behind it. The flow is **Client → Stablecue → CASP**. A CASP needs no SEP or Anchor Platform integration: it executes the fiat and stablecoin legs, including sending and receiving on Stellar from its own wallets, within its own licence and compliance framework.
 
@@ -14,7 +14,7 @@ Stablecue is the layer between institutional clients and regulated partners (CAS
 |---|---|
 | **Integration target** | Stellar Anchor Platform, operated by Stablecue (SEP-1, SEP-10, SEP-12 and SEP-24; SEP-31 designed) |
 | **Execution** | Regulated CASP partners, integrated through their own REST APIs |
-| **Network** | Stellar Testnet for Tranche 3 deployment, with a defined Mainnet path |
+| **Network** | Stellar Testnet and Stellar Mainnet |
 | **Assets** | USDC and USDT0 on day one, EURC as a follow-on. USDT0 is the omnichain form of USDT on Stellar |
 
 ---
@@ -37,16 +37,16 @@ Because client payments on a withdrawal go to the CASP's address, the Anchor Pla
 
 ### 2.2 SEPs used
 
-| SEP | Role of Stablecue | Scope |
-|-----|-------------------|-------|
-| SEP-1 | Hosts `stellar.toml`: `WEB_AUTH_ENDPOINT`, `TRANSFER_SERVER_SEP0024`, `KYC_SERVER` and the Stablecue `SIGNING_KEY` | Tranches 1–3 |
-| SEP-10 | Issues the authentication challenge. The client signs it in their own wallet and Stablecue issues a JWT | Tranches 1–3 |
-| SEP-12 | Serves the customer endpoints. KYC data is passed through to the CASP | Tranches 1–3 |
-| SEP-24 | Serves the interactive deposit and withdrawal endpoints and the hosted flow | Tranches 1–3 |
-| SEP-31 | Cross-border payment interface. Designed in Tranche 1, not built in Tranches 2–3 | Design only |
-| SEP-38 | Firm quotes for non-equivalent pairs such as EUR to USDC | Follow-on |
+| SEP | Role of Stablecue | Status |
+|-----|-------------------|--------|
+| SEP-1 | Hosts `stellar.toml`: `WEB_AUTH_ENDPOINT`, `TRANSFER_SERVER_SEP0024`, `KYC_SERVER` and the Stablecue `SIGNING_KEY` | In use |
+| SEP-10 | Issues the authentication challenge. The client signs it in their own wallet and Stablecue issues a JWT | In use |
+| SEP-12 | Serves the customer endpoints. KYC data is passed through to the CASP | In use |
+| SEP-24 | Serves the interactive deposit and withdrawal endpoints and the hosted flow | In use |
+| SEP-31 | Cross-border payment interface | Interface designed |
+| SEP-38 | Firm quotes for non-equivalent pairs such as EUR to USDC | Optional |
 
-Spec versions (SEP-24 is currently at 3.x, SEP-12 at 1.x) and the Anchor Platform version are pinned in Tranche 1.
+Spec versions (SEP-24 is currently at 3.x, SEP-12 at 1.x) and the Anchor Platform version are pinned.
 
 ---
 
@@ -61,7 +61,7 @@ Spec versions (SEP-24 is currently at 3.x, SEP-12 at 1.x) and the Anchor Platfor
 | **SEP Server and Hosted Flow** | Anchor Platform endpoints and the Stablecue-built interactive pages |
 | **SEP Signing Key** | Signs SEP-10 challenges and callbacks. Never holds funds |
 | **API Gateway** | REST API for institutional clients: OAuth2, per-client rate limiting, key-value store for keys and limits |
-| **Routing Engine** | Selects the CASP by jurisdiction, volume, rail availability and Stellar asset support. Built to select across several CASPs, with one integrated in this grant |
+| **Routing Engine** | Selects the CASP by jurisdiction, volume, rail availability and Stellar asset support |
 | **Intent State Machine** | Persists every intent transition (section 7) |
 | **Event Log** | Append-only audit trail linking intent ID, SEP-24 transaction ID, CASP order ID and Stellar transaction hash |
 | **Stellar Address Validator** | StrKey format, memo, account exists and trustline present, checked before any execution |
@@ -81,109 +81,28 @@ Spec versions (SEP-24 is currently at 3.x, SEP-12 at 1.x) and the Anchor Platfor
 
 ---
 
-## 4. Architecture by Tranche
+## 4. Environments and Stellar Design Decisions
 
-### Tranche 1: Architecture and Foundation (Approved)
+### 4.1 Environments
 
-**Objective**: Define the Stablecue engine and Anchor Platform architecture, design the CASP adapter contract and provision the development environment.
+| Environment | Network | Purpose |
+|-------------|---------|---------|
+| **Development** | Stellar Testnet | Engine and Anchor Platform development, with funded test accounts and assets and a CI pipeline |
+| **Testnet** | Stellar Testnet | End-to-end flows from a standard Stellar test wallet, against a CASP sandbox or a simulated CASP adapter where the sandbox does not support Stellar Testnet |
+| **Mainnet** | Stellar Mainnet | Production, with the production CASP adapter and real assets |
 
-**Technical deliverables**:
+Each environment has its own Anchor Platform configuration, SEP signing key, `stellar.toml` and CASP credentials. Keys are never shared between Testnet and Mainnet.
 
-1. **Engine architecture and API design**
-   - Anchor Platform deployment design: SEP server, Platform API, event service and the business-server callbacks
-   - Stablecue REST API gateway specification (OAuth2, rate limiting, request and response schemas)
-   - CASP adapter interface design: one contract for partner REST APIs, webhooks and capability flags
-   - Intent state machine definition (section 7)
-   - Event log schema (append-only, read-only audit trail)
+### 4.2 Stellar design decisions
 
-2. **Partner integration groundwork**
-   - CASP API mapping per partner: orders, KYC status, deposit addresses and webhooks
-   - Anchor Platform configuration: `stellar.toml`, asset definitions and business-provided deposit information
-   - Credential management: CASP API keys, webhook verification keys and custody of the SEP signing key
-   - Webhook endpoint design for CASP status updates
-
-3. **Dev environment and hosting setup**
-   - Isolated dev and staging environments with an Anchor Platform sandbox and CASP sandbox access
-   - CI/CD pipeline for engine builds
-   - Logging and error tracking infrastructure
-
-**Stellar-specific decisions made in Tranche 1**:
-- Which CASP to integrate first
-- Anchor Platform version and SEP versions in use
-- Stellar address validation rules (StrKey, memo handling, trustline checks)
-- Asset identifier configuration for USDC, USDT0 and EURC on Stellar Testnet
-
----
-
-### Tranche 2: MVP Core Engine Build
-
-**Objective**: Build the core Stablecue orchestration engine, the Anchor Platform integration and the first CASP adapter.
-
-**Technical deliverables**:
-
-1. **Core engine build: intent flow, state machine, API**
-   - Intent creation from SEP-24 interactive requests and from the REST API: asset (USDC, USDT0 or EURC), fiat amount and Stellar address
-   - Authentication: SEP-10 JWT validation for wallets, OAuth2 for REST clients
-   - Routing logic: selects the CASP by jurisdiction, volume, rail availability and Stellar asset support, over the common adapter interface. It supports several CASPs, although one is integrated in this grant
-   - State machine: persists intent transitions to the append-only event log
-   - Client REST API: status queries, intent cancellation and transaction history
-
-2. **Anchor Platform and CASP integration**
-   - SEP-10 and SEP-24 configuration, and the SEP-12 customer callbacks, which forward KYC data to the CASP
-   - Hosted interactive flow: amounts, KYC hand-off and payment instructions
-   - Platform API integration: the engine reports CASP progress as SEP-24 status updates
-   - Adapter for the first CASP: create order, order status, KYC status and signed webhooks
-   - Error handling: maps CASP errors and statuses to intent states and SEP-24 statuses
-   - Retry logic: exponential backoff for transient CASP failures
-
-3. **API documentation for client integrations**
-   - OpenAPI specification for the Stablecue REST endpoints
-   - Integration guide for B2B clients and wallets: `stellar.toml` discovery, SEP-10 authentication, binding Stellar addresses, submitting intents and handling callbacks
-
-**Stellar-specific decisions made in Tranche 2**:
-- SEP-12 flow: how customer data is forwarded to the CASP and how KYC status is returned
-- SEP-24 flow: how the hosted pages collect amounts and payout details and hand them to the CASP
-- How the engine reports CASP progress to the Platform API
-- Address validation: pre-binding and checking Stellar addresses before any execution
-
----
-
-### Tranche 3: Stellar Integration (Testnet)
-
-**Objective**: Complete the Stellar-specific integration (USDC, USDT0 and EURC flows, address binding, on-chain verification and reliability logic), deployed and tested on Stellar Testnet.
-
-**Technical deliverables**:
-
-1. **Stellar integration**
-   - Deposit and withdrawal orchestration for USDC, USDT0 and EURC through the CASP adapter
-   - Stellar address binding: clients pre-bind Stellar addresses and the engine validates format, account existence and trustline before execution
-   - On-chain verification: the engine verifies every CASP-reported Stellar transaction on the ledger, read-only, before advancing the intent
-   - Withdrawal payments: the client pays the CASP's Stellar address with a memo, and the engine detects it from the CASP webhook and the ledger
-   - Transaction linking: intent ID, SEP-24 transaction ID, CASP order ID and Stellar transaction hash (complete paper trail)
-   - Asset configuration: identifiers for USDC, USDT0 and EURC on Stellar Testnet, with EURC enabled after day one
-
-2. **Reliability logic**
-   - Reconciliation: webhook-driven status sync from the CASP plus a background heartbeat poller as fallback
-   - Fallback checks: periodic synchronisation of internal state with the CASP's actual order status
-   - Refund tracking: when execution fails after funds were received, the CASP's refund is tracked to completion
-   - Intent expiry: TTL on all intents, with automatic expiry and client notification for incomplete transactions
-
-3. **API documentation**
-   - Updated OpenAPI specification including Stellar-specific endpoints (address binding, on-chain status)
-   - Callback documentation for wallet callbacks and CASP webhooks
-
-4. **Stellar testnet testing and monitoring**
-   - End-to-end testnet deployment with the Anchor Platform and a CASP sandbox (or a simulated CASP adapter where the partner has no Stellar Testnet support)
-   - USDC, USDT0 and EURC delivery and receipt test flows
-   - Reconciliation and refund path testing
-   - Monitoring dashboards for intent success and failure rates
-
-**Stellar-specific decisions made in Tranche 3**:
-- Which Stellar assets (USDC, USDT0 and EURC) and their identifiers: issuer account for classic assets, contract ID for Soroban tokens
-- Memo handling for transaction identification
-- On-chain confirmation rule: a successful transaction in a closed ledger
-- Trustline policy: intents are blocked until the destination trustline exists
-- Testnet and Mainnet configuration separation
+- **Versions**: Anchor Platform and SEP versions are pinned per environment.
+- **Address validation**: StrKey format, memo handling, account exists and trustline present, checked before any execution.
+- **Assets**: USDC, USDT0 and EURC, configured per network by identifier: issuer account for classic assets, contract ID for Soroban tokens.
+- **Withdrawals**: the Anchor Platform's deposit information is business-provided. The engine supplies the CASP's Stellar address and memo.
+- **SEP-12**: customer data is forwarded to the CASP, and the CASP's KYC status is returned.
+- **SEP-24**: the hosted pages collect amounts and payout details and hand them to the CASP. Claimable balances are not used, so the destination account must hold a trustline, and intents are blocked until it does.
+- **Memos**: a memo identifies the transaction where the flow needs one, such as a withdrawal payment to the CASP.
+- **On-chain confirmation**: a successful transaction in a closed ledger.
 
 ---
 
@@ -243,7 +162,7 @@ Authorization: Bearer <JWT>
 { "asset_code": "USDC", "account": "G…", "amount": "100000.00" }
 → { "type": "interactive_customer_info_needed", "url": "https://…", "id": "…" }
 ```
-Claimable balances are not used in Tranches 1–3. The destination account must hold a trustline.
+Claimable balances are not used. The destination account must hold a trustline.
 
 Status changes reach the wallet through its `on_change_callback`, signed with the Stablecue SEP signing key, and are available by polling `GET /transaction?id=`.
 
@@ -378,14 +297,14 @@ All intents have an expiration timestamp, never later than the CASP order's expi
 
 ## 9. Onchain Footprint and Attribution
 
-For SCF metric tracking, every transaction routed through Stablecue produces:
+Every transaction routed through Stablecue produces:
 
 1. **Stellar transaction hash**: recorded in the event log and linked to the intent ID
 2. **Asset**: USDC, USDT0 or EURC on Stellar (issuer account or contract ID configured per network)
 3. **Client address**: the bound destination (deposit) or source (withdrawal) Stellar address, and memo where used
 4. **SEP-24 transaction ID and CASP order ID**: link the off-chain fiat leg to the on-chain stablecoin leg
 
-These data points allow attribution of TPV and volume to Stablecue's integration for final-tranche metric reporting.
+These data points allow settlement volume to be attributed to Stablecue's integration.
 
 ---
 
